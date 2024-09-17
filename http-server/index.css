@@ -1,0 +1,104 @@
+
+  
+  form#user-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: auto;
+  }
+
+  div#entries {
+    font-size: 20px;
+    margin-bottom: 20px;
+    border: #000000;
+    box-shadow: 2px 2px 2px #210c3f;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    content: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+    padding-right: 5px  ;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    
+  }
+  
+  input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    }
+
+    label[for="acceptTerms"] {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 1px; /* Adds a small space between the checkbox and label */
+    }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #00b300; /* Dark purple */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #119640;
+  }
+  
+  input:focus {
+    border-color: #6200ea;
+    outline: none;
+  }
+  
+  input[type="checkbox"]:focus {
+    outline: 2px solid #6200ea;
+  }
+  
+  form {
+    animation: fadeIn 0.5s ease;
+  }
+
+  input#name:invalid:focus {
+    border: red 1px solid;
+  }
+
+  input#email:invalid:focus {
+    border: red 1px solid;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

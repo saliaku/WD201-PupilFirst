@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <form id="user-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+    
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+    
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" max="09/11/2024" min="01/01/1924" required>
+    
+      <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+      <label for="acceptTerms" >Accept Terms & Conditions</label>
+    
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="entries">
+      <h3>Entries</h3>
+      <div id="user-entries"></div>
+    </div>
+    
+  </div>
+  <!-- <script src="samplejs/multiplication.js"></script> --> 
+  <script src="validation.js"></script>
+  <script src="form.js"></script>
+</body>
+</html>
