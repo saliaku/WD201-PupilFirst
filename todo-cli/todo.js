@@ -50,13 +50,13 @@ const todoList = () => {
     res = [];
     list.forEach(element => {
         if (element.completed && element.dueDate != today) {
-            res.push("[X] " + element.title + " " + element.dueDate);
+            res.push("[x] " + element.title + " " + element.dueDate);
         } else if (!element.completed && element.dueDate != today){
             res.push("[ ] " + element.title + " " + element.dueDate);
         }
 
         if (element.completed && element.dueDate === today) {
-            res.push("[X] " + element.title);
+            res.push("[x] " + element.title);
         } else if (!element.completed && element.dueDate === today){
             res.push("[ ] " + element.title);
         }
