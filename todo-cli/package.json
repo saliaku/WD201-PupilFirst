@@ -12,6 +12,7 @@
   "description": "",
   "devDependencies": {
     "husky": "^9.1.6",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3"
   }
 }
