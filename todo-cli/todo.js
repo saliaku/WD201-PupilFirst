@@ -2,7 +2,6 @@
 const todoList = () => {
   all = [];
   const add = (todoItem) => {
-    // eslint-disable-next-line no-undef
     all.push(todoItem);
   };
   const markAsComplete = (index) => {

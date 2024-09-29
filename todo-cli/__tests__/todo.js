@@ -31,17 +31,35 @@ describe("Todo List Test Suite", () => {
   });
 
   // //retrieval of overdue items
-  // test("Retrieval of overdue items", () =>{
-
-  // });
+  test("Retrieval of overdue items", () => {
+    const todoItemCount = all.length;
+    add({
+      title: "Test todo",
+      completed: false,
+      dueDate: new Date().toDateString("en-CA") - 1,
+    });
+    expect(all.length).toBe(todoItemCount + 1);
+  });
 
   // //retrievval of due today items
-  // test("Retrieval of due today items", () =>{
-
-  // });
+  test("Retrieval of due today items", () => {
+    const todoItemCount = all.length;
+    add({
+      title: "Test todo",
+      completed: false,
+      dueDate: new Date().toLocaleDateString("en-CA"),
+    });
+    expect(all.length).toBe(todoItemCount + 1);
+  });
 
   // //retrieval of due later items
-  // test("Retrieval of due later items", () =>{
-
-  // });
+  test("Retrieval of due later items", () => {
+    const todoItemCount = all.length;
+    add({
+      title: "Test todo",
+      completed: false,
+      dueDate: new Date().toDateString("en-CA") + 1,
+    });
+    expect(all.length).toBe(todoItemCount + 1);
+  });
 });
