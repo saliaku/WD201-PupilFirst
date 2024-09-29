@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 const todoList = () => {
   all = [];
   const add = (todoItem) => {
+    // eslint-disable-next-line no-undef
     all.push(todoItem);
   };
   const markAsComplete = (index) => {
@@ -11,11 +13,13 @@ const todoList = () => {
     // Write the date check condition here and return the array
     // of overdue items accordingly.
     let res = [];
+
     all.filter((item) => {
       if (item.dueDate < today) {
         res.push(item);
       }
     });
+
     return res;
   };
 
