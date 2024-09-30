@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const {connect} = require("./connectDB.js");
 const Todo = require("./TodoModel.js");
 
