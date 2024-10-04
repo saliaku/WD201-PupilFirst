@@ -58,18 +58,23 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
 
 app.delete("/todos/:id", async (request, response) => {
   console.log("Delete a todo by ID:", request.params.id);
-  return await Todo.destroy({
-    where: {
-      id: request.params.id,
-    },
-  })
-    .then(() => {
-      response.status(204);
-      return response.json(true);
-    })
-    .catch((error) => {
-      return response.json(false);
+
+  try {
+    const deletedCount = await Todo.destroy({
+      where: {
+        id: request.params.id,
+      },
     });
+
+    if (deletedCount > 0) {
+      response.status(204).json(true); // Todo was deleted
+    } else {
+      response.status(404).json(false); // Todo not found
+    }
+  } catch (error) {
+    console.error("Error deleting todo:", error);
+    response.status(500).json(false); // Internal server error
+  }
 });
 
 module.exports = app;
