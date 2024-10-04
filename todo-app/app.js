@@ -63,12 +63,11 @@ app.delete("/todos/:id", async (request, response) => {
     if (deletedCount === 0) {
       return response.status(404).json({ error: "Todo not found" });
     }
-    // Return a boolean of true if the todo was deleted
-    response.status(204);
-    return response.json({ success: true });
+    // Return a 204 status code with no content
+    return response.sendStatus(204);
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error: "Failed to delete todo" });
+    return response.status(500).json({ error: "Failed to delete todo" });
   }
 });
 
