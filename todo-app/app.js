@@ -56,24 +56,27 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
   }
 });
 
-app.delete("/todos/:id", async (request, response) => {
-  console.log("Delete a todo by ID:", request.params.id);
+app.delete("/todos/:id", async function (request, response) {
+  console.log("We have to delete a Todo with ID: ", request.params.id);
+
+  const todoId = request.params.id;
 
   try {
-    const deletedCount = await Todo.destroy({
+    // Assuming you have a function called deleteTodoById that returns true if deletion was successful
+    const result = await Todo.destroy({
       where: {
         id: request.params.id,
       },
     });
 
-    if (deletedCount > 0) {
-      response.status(204).json(true); // Todo was deleted
+    if (result) {
+      response.status(204).send(true); // Todo was deleted successfully
     } else {
-      response.status(404).json(false); // Todo not found
+      response.status(404).send(false); // Todo not found
     }
   } catch (error) {
-    console.error("Error deleting todo:", error);
-    response.status(500).json(false); // Internal server error
+    console.error("Error deleting Todo:", error);
+    response.status(500).send(false); // Internal server error
   }
 });
 
