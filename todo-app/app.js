@@ -12,6 +12,8 @@ app.get("/", function (request, response) {
 
 app.get("/todos", (request, response) => {
   console.log("GET Todo List");
+  const todos = Todo.findAll();
+  return response.json(todos);
 });
 
 app.post("/todos", async (request, response) => {
@@ -50,8 +52,18 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
   }
 });
 
-app.delete("/todos/:id", (request, response) => {
-  console.log("We have deleted a todo with ID: ", request.params.id);
+app.delete("/todos/:id", async (req, res) => {
+  const todoId = req.params.id;
+  try {
+    const deletedCount = await Todo.destroy({ where: { id: todoId } });
+    if (deletedCount === 0) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+    res.status(204).send(); // No content to return on successful deletion
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete todo" });
+  }
 });
 
 module.exports = app;
