@@ -49,22 +49,20 @@ describe("Todo test suit", () => {
     expect(parsedMarkCompleteResponse.completed).toBe(true);
   });
 
-  test("delete a todo", async () => {
-    // Create a new todo
+  test("Deletes a todo with the given ID if it exists", async () => {
     const response = await agent.post("/todos").send({
-      title: "Delete This Todo",
+      title: "Todo 1",
       dueDate: new Date().toISOString(),
     });
-
     const parsedResponse = JSON.parse(response.text);
     const todoid = parsedResponse.id;
+    const deleteResponse = await agent.delete(`/todos/${todoid}`);
 
-    // Delete the created todo
-    const deleteResponse = await agent.post(`/todos/${todoid}`);
-    expect(deleteResponse.statusCode).toBe(404);
+    expect(deleteResponse.statusCode).toBe(204);
+  });
 
-    // Verify the todo has been deleted
-    const fetchResponse = await agent.get(`/todos/${todoid}`);
-    expect(fetchResponse.statusCode).toBe(404); // Ensure it no longer exists
+  test("Returns false for a non-existing ID", async () => {
+    const response = await request(app).delete("/todos/999");
+    expect(response.body).toBe(false);
   });
 });
