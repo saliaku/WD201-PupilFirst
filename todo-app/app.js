@@ -10,10 +10,14 @@ app.get("/", function (request, response) {
   response.send("Hello World");
 });
 
-app.get("/todos", (request, response) => {
-  console.log("GET Todo List");
-  const todos = Todo.findAll();
-  return response.json(todos);
+app.get("/todos", async (req, res) => {
+  try {
+    const todos = await Todo.findAll();
+    res.json(todos);
+  } catch (error) {
+    console.error(error);
+    res.status(404).json({ error: "Failed to fetch todos" });
+  }
 });
 
 app.post("/todos", async (request, response) => {
@@ -59,7 +63,7 @@ app.delete("/todos/:id", async (req, res) => {
     if (deletedCount === 0) {
       return res.status(404).json({ error: "Todo not found" });
     }
-    res.status(204).send(); // No content to return on successful deletion
+    res.json({ success: true });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to delete todo" });
