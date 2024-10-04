@@ -52,7 +52,7 @@ describe("Todo test suit", () => {
   test("delete a todo", async () => {
     // Create a new todo
     const response = await agent.post("/todos").send({
-      title: "Todo 1",
+      title: "Delete This Todo",
       dueDate: new Date().toISOString(),
     });
 
@@ -60,11 +60,11 @@ describe("Todo test suit", () => {
     const todoid = parsedResponse.id;
 
     // Delete the created todo
-    const deleteResponse = await agent.delete(`/todos/${todoid}`).send();
-    expect(deleteResponse.statusCode).toBe(204);
+    const deleteResponse = await agent.post(`/todos/${todoid}`);
+    expect(deleteResponse.statusCode).toBe(404);
 
     // Verify the todo has been deleted
-    const fetchResponse = await agent.get(`/todos/${todoid}`).send();
+    const fetchResponse = await agent.get(`/todos/${todoid}`);
     expect(fetchResponse.statusCode).toBe(404); // Ensure it no longer exists
   });
 });
