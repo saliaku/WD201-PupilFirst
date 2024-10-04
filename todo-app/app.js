@@ -64,7 +64,8 @@ app.delete("/todos/:id", async (request, response) => {
     },
   })
     .then(() => {
-      response.status(204).send();
+      response.status(204);
+      return response.json(true);
     })
     .catch((error) => {
       console.error(error);
