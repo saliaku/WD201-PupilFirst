@@ -57,13 +57,18 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
 });
 
 app.delete("/todos/:id", async (request, response) => {
-  const todoId = request.params.id;
+  console.log("Delete a todo by ID:", request.params.id);
   try {
-    const deletedCount = await Todo.destroy({ where: { id: todoId } });
+    // Using Sequelize's destroy method to delete the todo by ID
+    const deletedCount = await Todo.destroy({
+      where: { id: request.params.id },
+    });
+
     if (deletedCount === 0) {
       return response.status(404).json({ error: "Todo not found" });
     }
-    // Return a 204 status code with no content
+
+    // Return a 204 No Content response
     return response.sendStatus(204);
   } catch (error) {
     console.error(error);
