@@ -56,17 +56,19 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
   }
 });
 
-app.delete("/todos/:id", async (req, res) => {
-  const todoId = req.params.id;
+app.delete("/todos/:id", async (request, response) => {
+  const todoId = request.params.id;
   try {
     const deletedCount = await Todo.destroy({ where: { id: todoId } });
     if (deletedCount === 0) {
-      return res.status(404).json({ error: "Todo not found" });
+      return response.status(404).json({ error: "Todo not found" });
     }
-    res.json({ success: true }); // Returns a boolean response
+    // Return a boolean of true if the todo was deleted
+    response.status(204);
+    return response.json({ success: true });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to delete todo" });
+    response.status(500).json({ error: "Failed to delete todo" });
   }
 });
 
