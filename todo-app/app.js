@@ -68,8 +68,7 @@ app.delete("/todos/:id", async (request, response) => {
       return response.json(true);
     })
     .catch((error) => {
-      console.error(error);
-      response.status(500).json({ error: "Failed to delete todo" });
+      return response.json(false);
     });
 });
 
