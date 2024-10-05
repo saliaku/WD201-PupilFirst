@@ -8,7 +8,7 @@
 </head>
 <body>
     <%- include('header.ejs') %>
-    <p>Number of todos: <%= allTodos.length %></p>
+    <!-- <p>Number of todos: <%= allTodos.length %></p>
     
     <table>
         <% for (var i = 0; i < allTodos.length; i++) { %>
@@ -18,6 +18,11 @@
                 </td>
             </tr>
         <% } %> 
-    </table> 
+    </table>  -->
+
+    <%- include('todos.ejs', { todos: allTodos }) %>
+
+    <%- include('footer.ejs') %>
+
 </body>
 </html>

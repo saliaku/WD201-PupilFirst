@@ -1,0 +1,17 @@
+<!-- todos.ejs -->
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i = 0; i < todos.length; i++) { %>
+            <tr>
+                <td><%= todos[i].title %></td>
+                <td><%= todos[i].completed ? 'Done' : 'Pending' %></td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
