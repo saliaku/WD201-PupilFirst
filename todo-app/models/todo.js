@@ -18,79 +18,79 @@ module.exports = (sequelize, DataTypes) => {
       return this.findAll();
     }
 
-    // static async addTask(params) {
-    //   return await Todo.create(params);
-    // }
+    static async addTask(params) {
+      return await Todo.create(params);
+    }
 
-    // static async showList() {
-    //   console.log("My Todo list \n");
+    static async showList() {
+      console.log("My Todo list \n");
 
-    //   console.log("Overdue");
-    //   // FILL IN HERE
-    //   const overdue = await Todo.overdue();
-    //   overdue.forEach((todo) => {
-    //     console.log(todo.displayableString());
-    //   });
+      console.log("Overdue");
+      // FILL IN HERE
+      const overdue = await Todo.overdue();
+      overdue.forEach((todo) => {
+        console.log(todo.displayableString());
+      });
 
-    //   console.log("\n");
+      console.log("\n");
 
-    //   console.log("Due Today");
-    //   // FILL IN HERE
-    //   const dueToday = await Todo.dueToday();
-    //   dueToday.forEach((todo) => {
-    //     console.log(todo.displayableString());
-    //   });
+      console.log("Due Today");
+      // FILL IN HERE
+      const dueToday = await Todo.dueToday();
+      dueToday.forEach((todo) => {
+        console.log(todo.displayableString());
+      });
 
-    //   console.log("\n");
+      console.log("\n");
 
-    //   console.log("Due Later");
-    //   // FILL IN HERE
-    //   const dueLater = await Todo.dueLater();
-    //   dueLater.forEach((todo) => {
-    //     console.log(todo.displayableString());
-    //   });
-    // }
+      console.log("Due Later");
+      // FILL IN HERE
+      const dueLater = await Todo.dueLater();
+      dueLater.forEach((todo) => {
+        console.log(todo.displayableString());
+      });
+    }
 
-    // static async overdue() {
-    //   // FILL IN HERE TO RETURN OVERDUE ITEMS
-    //   return await Todo.findAll({
-    //     where: {
-    //       dueDate: {
-    //         [Op.lt]: today,
-    //       },
-    //     },
-    //   });
-    // }
+    static async overdue() {
+      // FILL IN HERE TO RETURN OVERDUE ITEMS
+      return await Todo.findAll({
+        where: {
+          dueDate: {
+            [Op.lt]: today,
+          },
+        },
+      });
+    }
 
-    // static async dueToday() {
-    //   // FILL IN HERE TO RETURN ITEMS DUE tODAY
-    //   return await Todo.findAll({
-    //     where: {
-    //       dueDate: {
-    //         [Op.eq]: today,
-    //       },
-    //     },
-    //   });
-    // }
+    static async dueToday() {
+      // FILL IN HERE TO RETURN ITEMS DUE tODAY
+      return await Todo.findAll({
+        where: {
+          dueDate: {
+            [Op.eq]: today,
+          },
+        },
+      });
+    }
 
-    // static async dueLater() {
-    //   // FILL IN HERE TO RETURN ITEMS DUE LATER
-    //   return await Todo.findAll({
-    //     where: {
-    //       dueDate: {
-    //         [Op.gt]: today,
-    //       },
-    //     },
-    //   });
-    // }
+    static async dueLater() {
+      // FILL IN HERE TO RETURN ITEMS DUE LATER
+      return await Todo.findAll({
+        where: {
+          dueDate: {
+            [Op.gt]: today,
+          },
+        },
+      });
+    }
 
-    // displayableString() {
-    //   let checkbox = this.completed ? "[x]" : "[ ]";
-    //   if (this.dueDate === today) {
-    //     return `${this.id}. ${checkbox} ${this.title}`;
-    //   }
-    //   return `${this.id}. ${checkbox} ${this.title} ${this.dueDate}`;
-    // }
+    displayableString() {
+      let checkbox = this.completed ? "[x]" : "[ ]";
+      if (this.dueDate === today) {
+        return `${this.id}. ${checkbox} ${this.title}`;
+      }
+      return `${this.id}. ${checkbox} ${this.title} ${this.dueDate}`;
+    }
 
     static addTodo({ title, dueDate }) {
       return this.create({
