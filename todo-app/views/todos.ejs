@@ -14,7 +14,7 @@
 </form>
 
 <div>
-    <h5>Overdue (<span id="count-overdue"><%= todos.filter(todo => !todo.completed && new Date(todo.dueDate) < new Date()).length %></span>)</h5>
+    <h5>Overdue </h5>(<span id="count-overdue"><%= todos.filter(todo => !todo.completed && new Date(todo.dueDate) < new Date()).length %></span>)
     <ul class="list-none">
         <% for (var i = 0; i < todos.length; i++) { %>
             <% if (!todos[i].completed && new Date(todos[i].dueDate) < new Date()) { %>
@@ -35,7 +35,7 @@
 </div>
 
 <div>
-    <h5>Due Today (<span id="count-due-today"><%= todos.filter(todo => !todo.completed && new Date(todo.dueDate).toDateString() === new Date().toDateString()).length %></span>)</h5>
+    <h5>Due Today </h5>(<span id="count-due-today"><%= todos.filter(todo => !todo.completed && new Date(todo.dueDate).toDateString() === new Date().toDateString()).length %></span>)
     <ul class="list-none">
         <% for (var i = 0; i < todos.length; i++) { %>
             <% if (!todos[i].completed && new Date(todos[i].dueDate).toDateString() === new Date().toDateString()) { %>
@@ -56,7 +56,7 @@
 </div>
 
 <div>
-    <h5>Due Later (<span id="count-due-later"><%= todos.filter(todo => !todo.completed && new Date(todo.dueDate) > new Date()).length %></span>)</h5>
+    <h5>Due Later </h5>(<span id="count-due-later"><%= todos.filter(todo => !todo.completed && new Date(todo.dueDate) > new Date()).length %></span>)
     <ul class="list-none">
         <% for (var i = 0; i < todos.length; i++) { %>
             <% if (!todos[i].completed && new Date(todos[i].dueDate) > new Date()) { %>
