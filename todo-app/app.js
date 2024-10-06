@@ -7,6 +7,7 @@ const { Todo } = require("./models");
 const bodyParser = require("body-parser");
 const path = require("path");
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -79,14 +80,14 @@ app.delete("/todos/:id", async function (request, response) {
 
     // If result is 1, the deletion was successful
     if (result === 1) {
-      return response.status(204).send(true);
+      return response.status(204).json(true);
     } else {
       // If no rows were affected, the todo didn't exist
-      return response.status(404).send(false);
+      return response.status(404).json(false);
     }
   } catch (error) {
     console.error("Error deleting Todo:", error);
-    return response.status(500).send(false);
+    return response.status(500).json(false);
   }
 });
 
