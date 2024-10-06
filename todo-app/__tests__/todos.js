@@ -58,7 +58,7 @@ describe("Todo test suit", () => {
     const todoid = parsedResponse.id;
     const deleteResponse = await agent.delete(`/todos/${todoid}`);
 
-    expect(deleteResponse.statusCode).toBe(204);
+    expect(deleteResponse.statusCode).toBe(200);
   });
 
   test("Returns false for a non-existing ID", async () => {

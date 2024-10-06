@@ -80,7 +80,7 @@ app.delete("/todos/:id", async function (request, response) {
 
     // If result is 1, the deletion was successful
     if (result === 1) {
-      return response.status(204).json(true);
+      return response.status(200).json(true);
     } else {
       // If no rows were affected, the todo didn't exist
       return response.status(404).json(false);
