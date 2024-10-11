@@ -84,6 +84,14 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
+    static async remove(id) {
+      return await Todo.destroy({
+        where: {
+          id: id,
+        },
+      });
+    }
+
     displayableString() {
       let checkbox = this.completed ? "[x]" : "[ ]";
       if (this.dueDate === today) {

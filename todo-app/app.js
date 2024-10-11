@@ -76,20 +76,14 @@ app.delete("/todos/:id", async function (request, response) {
   console.log("We have to delete a Todo with ID: ", request.params.id);
 
   try {
-    const result = await Todo.destroy({
-      where: { id: request.params.id },
-    });
-
-    // If result is 1, the deletion was successful
-    if (result === 1) {
-      return response.status(200).json(true);
+    const todo = await Todo.remove(request.params.id);
+    if (todo) {
+      return response.json({ success: true });
     } else {
-      // If no rows were affected, the todo didn't exist
-      return response.status(404).json(false);
+      return response.json(false);
     }
   } catch (error) {
-    console.error("Error deleting Todo:", error);
-    return response.status(500).json(false);
+    return response.status(422).json(error);
   }
 });
 

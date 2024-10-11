@@ -6,6 +6,38 @@
     <title>To-Do Manager</title>
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function  updateTodo(id){
+            fetch(`/todos/${id}/markAsCompleted`, {
+
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if(response.ok){
+                    window.location.reload();
+                }
+            }).catch(error => {
+                console.error( error);
+            });
+        }
+
+        function deleteTodo(id){
+            fetch(`/todos/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if(response.ok){
+                    window.location.reload();
+                }
+            }).catch(error => {
+                console.error( error);
+            });
+        }
+    </script>
 </head>
 <body>
 
