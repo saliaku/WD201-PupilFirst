@@ -77,22 +77,22 @@ app.post("/todos", async (request, response) => {
 //   }
 // });
 
-app.put("/todos/:id", async (request, response) => {
-  console.log("We have to update a todo with ID: ", request.params.id);
+app.post("/todos/:id/update", async (req, res) => {
+  const todoId = req.params.id;
+  const { completed } = req.body; // Get completed status from the request body
 
   try {
-    const todo = await Todo.findByPk(request.params.id);
+    const todo = await Todo.findByPk(todoId);
     if (!todo) {
-      return response.status(404).json({ error: "Todo not found" });
+      return res.status(404).send("Todo not found");
     }
 
-    const { status } = request.body;
-
-    await todo.setCompletionStatus(status);
-    return response.json(todo);
+    todo.completed = completed; // Set the completed status from the request
+    await todo.save();
+    return res.json({ message: "Todo updated successfully", todo });
   } catch (error) {
     console.error(error);
-    return response.status(500).json({ error: "Failed to update todo" });
+    return res.status(500).send("Failed to update todo");
   }
 });
 

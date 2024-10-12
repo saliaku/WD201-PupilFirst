@@ -100,20 +100,21 @@ module.exports = (sequelize, DataTypes) => {
       return `${this.id}. ${checkbox} ${this.title} ${this.dueDate}`;
     }
 
-    static addTodo({ title, dueDate }) {
+    static async addTodo({ title, dueDate }) {
       return this.create({
         title: title,
         dueDate: dueDate,
         completed: false,
       });
     }
-    // markAsCompleted() {
-    //   return this.update({
-    //     completed: true,
-    //   });
-    // }
 
-    setCompletionStatus(status) {
+    static async markAsCompleted() {
+      return this.update({
+        completed: true,
+      });
+    }
+
+    static async setCompletionStatus(status) {
       this.completed = !status;
       return this.save();
     }
