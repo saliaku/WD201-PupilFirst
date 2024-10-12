@@ -74,7 +74,7 @@
 
 <div>
     <h5>Overdue</h5>
-    (<span id="count-overdue"><%= todos.filter(todo => new Date(todo.dueDate) < new Date().setHours(0, 0, 0, 0) && !todo.completed).length %></span>)
+    (<span id="count-overdue-<%= todos.filter(todo => new Date(todo.dueDate) < new Date().setHours(0, 0, 0, 0) && !todo.completed).length %>"><%= todos.filter(todo => new Date(todo.dueDate) < new Date().setHours(0, 0, 0, 0) && !todo.completed).length %></span>)
     <table class="list-none">
         <thead>
             <tr>
@@ -117,7 +117,7 @@
 
 <div>
     <h5>Due Today</h5>
-    (<span id="count-due-today"><%= todos.filter(todo => new Date(todo.dueDate).toDateString() === new Date().toDateString() && !todo.completed).length %></span>)
+    (<span id="count-due-today-<%= todos.filter(todo => new Date(todo.dueDate) === new Date().setHours(0, 0, 0, 0) && !todo.completed).length %>"><%= todos.filter(todo => new Date(todo.dueDate).toDateString() === new Date().toDateString() && !todo.completed).length %></span>)
     <table class="list-none">
         <thead>
             <tr>
@@ -156,7 +156,7 @@
 
 <div>
     <h5>Due Later</h5>
-    (<span id="count-due-later"><%= todos.filter(todo => new Date(todo.dueDate) > new Date() && !todo.completed).length %></span>)
+    (<span id="count-due-later-<%= todos.filter(todo => new Date(todo.dueDate) > new Date().setHours(0, 0, 0, 0) && !todo.completed).length %>"><%= todos.filter(todo => new Date(todo.dueDate) > new Date() && !todo.completed).length %></span>)
     <table class="list-none">
         <thead>
             <tr>
