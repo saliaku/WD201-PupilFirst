@@ -36,15 +36,20 @@ app.get("/todos", async (req, res) => {
 });
 
 app.post("/todos", async (request, response) => {
-  console.log("POST Todo", request.body);
-  //todo
+  const { title, dueDate } = request.body;
+
+  if (!title || !dueDate) {
+    return response
+      .status(400)
+      .json({ error: "Title and Due Date are required." });
+  }
+
   try {
     const todo = await Todo.addTodo({
-      title: request.body.title,
-      dueDate: request.body.dueDate,
+      title,
+      dueDate,
       completed: false,
     });
-    // return response.json(todo);
     return response.redirect("/");
   } catch (error) {
     console.log(error);

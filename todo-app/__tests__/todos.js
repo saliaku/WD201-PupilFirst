@@ -65,4 +65,18 @@ describe("Todo test suit", () => {
     const response = await request(app).delete("/todos/999");
     expect(response.body).toBe(false);
   });
+
+  // test("mark a todo as completed", async () => {
+  //   const response = await agent.post("/todos").send({
+  //     title: "Todo 1",
+  //     dueDate: new Date().toISOString(),
+  //   });
+  //   const todoid = response.body.id; // Ensure this retrieves the ID
+
+  //   const markCompleteResponse = await agent
+  //     .put(`/todos/${todoid}`)
+  //     .send({ status: true }); // Sending the new completion status
+  //   const parsedMarkCompleteResponse = JSON.parse(markCompleteResponse.text);
+  //   expect(parsedMarkCompleteResponse.completed).toBe(true);
+  // });
 });
