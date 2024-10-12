@@ -107,10 +107,15 @@ module.exports = (sequelize, DataTypes) => {
         completed: false,
       });
     }
-    markAsCompleted() {
-      return this.update({
-        completed: true,
-      });
+    // markAsCompleted() {
+    //   return this.update({
+    //     completed: true,
+    //   });
+    // }
+
+    setCompletionStatus(status) {
+      this.completed = !status;
+      return this.save();
     }
   }
 

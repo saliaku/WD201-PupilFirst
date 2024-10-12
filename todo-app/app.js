@@ -52,8 +52,28 @@ app.post("/todos", async (request, response) => {
   }
 });
 
-app.put("/todos/:id/markAsCompleted", async (request, response) => {
-  console.log("We have updated a todo with ID: ", request.params.id);
+// app.put("/todos/:id/markAsCompleted", async (request, response) => {
+//   console.log("We have updated a todo with ID: ", request.params.id);
+
+//   try {
+//     const todo = await Todo.findByPk(request.params.id);
+//     if (!todo) {
+//       return response.status(404).json({ error: "Todo not found" });
+//     }
+
+//     // Update the completed status
+//     todo.completed = true;
+//     await todo.save(); // Save the changes
+
+//     return response.json(todo); // Return the updated todo
+//   } catch (error) {
+//     console.error(error);
+//     return response.status(500).json({ error: "Failed to update todo" });
+//   }
+// });
+
+app.put("/todos/:id", async (request, response) => {
+  console.log("We have to update a todo with ID: ", request.params.id);
 
   try {
     const todo = await Todo.findByPk(request.params.id);
@@ -61,11 +81,10 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
       return response.status(404).json({ error: "Todo not found" });
     }
 
-    // Update the completed status
-    todo.completed = true;
-    await todo.save(); // Save the changes
+    const { status } = request.body;
 
-    return response.json(todo); // Return the updated todo
+    await todo.setCompletionStatus(status);
+    return response.json(todo);
   } catch (error) {
     console.error(error);
     return response.status(500).json({ error: "Failed to update todo" });
