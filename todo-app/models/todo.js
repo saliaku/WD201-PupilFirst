@@ -118,6 +118,14 @@ module.exports = (sequelize, DataTypes) => {
       this.completed = !status;
       return this.save();
     }
+
+    static async deleteTodo(id) {
+      return this.destroy({
+        where: {
+          id: id,
+        },
+      });
+    }
   }
 
   Todo.init(
