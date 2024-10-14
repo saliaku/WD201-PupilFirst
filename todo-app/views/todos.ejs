@@ -1,49 +1,32 @@
 <!-- todos.ejs -->
-<form id="todoform" action="/todos" method="post">
+<form id="todoform" action="/todos" method="post" onsubmit="return validateForm()">
     <div class="flex gap-2 py-4">
         <div class="flex-auto">
-            <input  type="text" name="title" placeholder="What's next?" required class="text-sm p-2 border border-gray-300 text-gray-900 rounded leading-5" />
+            <input type="text" id="title" name="title" placeholder="What's next?" required class="text-sm p-2 border border-gray-300 text-gray-900 rounded leading-5" />
         </div>
         <div class="flex-auto">
             <input required type="date" name="dueDate" class="text-sm p-2 border border-gray-300 text-gray-900 rounded leading-5" />
         </div>
         <div class="flex-none">
-            <button type="submit"  name="submit" class="bg-green-600 text-white px-5 py-2 rounded leading-5 font-medium mr-2 mb-2">Add</button>
+            <button type="submit" name="submit" class="bg-green-600 text-white px-5 py-2 rounded leading-5 font-medium mr-2 mb-2">Add</button>
         </div>
     </div>
 </form>
 
 <script>
-    // document.getElementById('todoForm').addEventListener('submit', function(event) {
-    //     const title = document.querySelector('input[name="title"]').value.trim();
-    //     const dueDate = document.querySelector('input[name="dueDate"]').value;
+    function validateForm() {
+    const titleInput = document.getElementById('title');
+    if (titleInput.value.trim() === '') {
+        alert('Please enter a title for your todo.');
+        return false; 
+    }
 
-    //     // Clear any previous alerts
-    //     const alerts = document.querySelectorAll('.alert');
-    //     alerts.forEach(alert => alert.remove());
-
-    //     let isValid = true;
-
-    //     if (!title) {
-    //         isValid = false;
-    //         const titleAlert = document.createElement('div');
-    //         titleAlert.textContent = 'Title cannot be empty.';
-    //         titleAlert.className = 'alert text-red-600';
-    //         this.prepend(titleAlert); // Add alert above the form
-    //     }
-
-    //     if (!dueDate) {
-    //         isValid = false;
-    //         const dueDateAlert = document.createElement('div');
-    //         dueDateAlert.textContent = 'Due Date cannot be empty.';
-    //         dueDateAlert.className = 'alert text-red-600';
-    //         this.prepend(dueDateAlert); // Add alert above the form
-    //     }
-
-    //     if (!isValid) {
-    //         event.preventDefault(); // Prevent form submission
-    //     }
-    // });
+    if(dateInput = document.getElementById('dueDate').value.trim() === '') {
+        alert('Please enter a due date for your todo.');
+        return false; 
+    }
+    return true;
+}
 
     async function setCompletionStatus(todoId) {
     const checkbox = document.getElementById(`todo-checkbox-${todoId}`);
