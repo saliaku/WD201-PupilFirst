@@ -14,36 +14,36 @@
 </form>
 
 <script>
-    document.getElementById('todoForm').addEventListener('submit', function(event) {
-        const title = document.querySelector('input[name="title"]').value.trim();
-        const dueDate = document.querySelector('input[name="dueDate"]').value;
+    // document.getElementById('todoForm').addEventListener('submit', function(event) {
+    //     const title = document.querySelector('input[name="title"]').value.trim();
+    //     const dueDate = document.querySelector('input[name="dueDate"]').value;
 
-        // Clear any previous alerts
-        const alerts = document.querySelectorAll('.alert');
-        alerts.forEach(alert => alert.remove());
+    //     // Clear any previous alerts
+    //     const alerts = document.querySelectorAll('.alert');
+    //     alerts.forEach(alert => alert.remove());
 
-        let isValid = true;
+    //     let isValid = true;
 
-        if (!title) {
-            isValid = false;
-            const titleAlert = document.createElement('div');
-            titleAlert.textContent = 'Title cannot be empty.';
-            titleAlert.className = 'alert text-red-600';
-            this.prepend(titleAlert); // Add alert above the form
-        }
+    //     if (!title) {
+    //         isValid = false;
+    //         const titleAlert = document.createElement('div');
+    //         titleAlert.textContent = 'Title cannot be empty.';
+    //         titleAlert.className = 'alert text-red-600';
+    //         this.prepend(titleAlert); // Add alert above the form
+    //     }
 
-        if (!dueDate) {
-            isValid = false;
-            const dueDateAlert = document.createElement('div');
-            dueDateAlert.textContent = 'Due Date cannot be empty.';
-            dueDateAlert.className = 'alert text-red-600';
-            this.prepend(dueDateAlert); // Add alert above the form
-        }
+    //     if (!dueDate) {
+    //         isValid = false;
+    //         const dueDateAlert = document.createElement('div');
+    //         dueDateAlert.textContent = 'Due Date cannot be empty.';
+    //         dueDateAlert.className = 'alert text-red-600';
+    //         this.prepend(dueDateAlert); // Add alert above the form
+    //     }
 
-        if (!isValid) {
-            event.preventDefault(); // Prevent form submission
-        }
-    });
+    //     if (!isValid) {
+    //         event.preventDefault(); // Prevent form submission
+    //     }
+    // });
 
     async function setCompletionStatus(todoId) {
     const checkbox = document.getElementById(`todo-checkbox-${todoId}`);
