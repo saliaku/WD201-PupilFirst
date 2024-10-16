@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Manager</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function  updateTodo(id){
+            fetch(`/todos/${id}/markAsCompleted`, {
+
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if(response.ok){
+                    window.location.reload();
+                }
+            }).catch(error => {
+                console.error( error);
+            });
+        }
+
+        function deleteTodo(id){
+            fetch(`/todos/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if(response.ok){
+                    window.location.reload();
+                }
+            }).catch(error => {
+                console.error( error);
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <div class="grid grid-cols-6">
+        <divc class="col-start-3 col-span-2">
+            <%- include('header.ejs') %>
+            <p class="py-2">Welcome to the TO-DO manager</p>
+            <p class="py-2">New here? <a class="text-green-600" href="/signup">Sign-up-NOW</a></p>
+            <p class="py-2">Alredy have an account? <a class="text-green-600" href="/login">Sign-in</a></p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-6">
+        <divc class="col-start-3 col-span-2">       
+            <%- include('todos.ejs', { todos: todos }) %>
+    </div>
+    
+   
+    <div class="grid grid-cols-6">
+        <divc class="col-start-3 col-span-2">
+            <%- include('footer.ejs') %>
+    </div>
+
+   
+
+</body>
+</html>
